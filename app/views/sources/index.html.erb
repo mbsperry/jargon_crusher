@@ -18,13 +18,13 @@
 <% @sources.each do |source| %>
   <tr>
     <td><%= link_to source.name, source %></td>
-    <td><%= link_to 'Edit', edit_source_path(source) %></td>
-    <td><%= link_to 'Destroy', source, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
+
+<%= link_to 'New Source', new_source_path %>
 
 <% @source_data = Array.new %>
 <% @sources.each do |source| %>
@@ -32,7 +32,7 @@
 <% end %>
 
 <p>
-  <div id="chartdiv" style="height:400px;width:300px; "> </div>
+  <div id="chartdiv" style="height:400px;width:800px; "> </div>
   <script>
     var j_points = [];
     j_points = <%= @source_data.to_json %>;
@@ -54,4 +54,3 @@
   </script>
 </p>
 
-<%= link_to 'New Source', new_source_path %>

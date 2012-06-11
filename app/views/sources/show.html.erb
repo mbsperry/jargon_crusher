@@ -6,7 +6,8 @@
 
 <p>
   <b>Source:</b>
-  <%= @source.name %>
+  <%= link_to @source.name,  edit_source_path %>
+  <%= link_to '(delete)', @source, confirm: 'Are you sure?', method: :destroy %>
 </p>
 
 <p>
