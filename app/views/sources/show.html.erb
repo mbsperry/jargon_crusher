@@ -1,8 +1,41 @@
+<script language="javascript" type="text/javascript" src="/assets/jquery.min.   js"></script>
+<script language="javascript" type="text/javascript" src="/assets/jquery.jqplot.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/assets/jquery.jqplot.css" />
+
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
+  <b>Source:</b>
   <%= @source.name %>
+</p>
+
+<p>
+  <b>Jargon Files:</b>
+  <% @files = JargonFile.all %>
+  <% points = [] %>
+  <table>
+    <tr>
+      <th>File name</th>
+      <th>Jargon Score</th>
+    </tr>
+    <% @files.each do |file| %>
+      <tr>
+        <td><%= file.name %></td>
+        <td><%= file.jargon_score %></td>
+        <% points.push file.jargon_score %>
+      </tr>
+    <% end %>
+  </table>
+</p>
+
+<p>
+  <b>Score Trend</b>
+  <div id="chartdiv" style="height:400px;width:300px; "></div>
+  <script>
+    var j_points = [];
+    j_points = <%= points.to_json %>;
+    $.jqplot('chartdiv', [j_points]);
+  </script>
 </p>
 
 

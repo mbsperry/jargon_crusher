@@ -2,6 +2,8 @@ JargonCrusher::Application.routes.draw do
   resources :jargon_files
 
   resources :sources
+  
+  root :to => 'Sources#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
