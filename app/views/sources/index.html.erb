@@ -24,20 +24,19 @@
 
 <br />
 
-<% @source_data = [] %>
+<% @source_data = Array.new %>
 <% @sources.each do |source| %>
-  <% @sources.each do |source| %>
-    <% @source_data.push source.jargon_files.map { |x| x.jargon_score } %>
-  <% end %>
+  <% @source_data.push source.jargon_files.map { |x| x.jargon_score } %>
 <% end %>
 
 <p>
-  <b>Jargon scores for all sources</b>
+  <b>Jargon scores for all sources</b></br>
+  <%= @source_data.inspect %>
   <div id="chartdiv" style="height:400px;width:300px; "></div>
   <script>
     var j_points = [];
     j_points = <%= @source_data.to_json %>;
-    $.jqplot('chartdiv', [j_points]);
+    $.jqplot('chartdiv', j_points);
   </script>
 </p>
 
