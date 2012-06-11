@@ -1,0 +1,2 @@
+module JargonFilesHelper
+end

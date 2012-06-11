@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @jargon_file.name %>
+</p>
+
+<p>
+  <b>Source:</b>
+  <%= @jargon_file.source_id %>
+</p>
+
+<p>
+  <b>Jargon score:</b>
+  <%= @jargon_file.jargon_score %>
+</p>
+
+
+<%= link_to 'Edit', edit_jargon_file_path(@jargon_file) %> |
+<%= link_to 'Back', jargon_files_path %>

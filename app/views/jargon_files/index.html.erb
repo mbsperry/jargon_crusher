@@ -1,0 +1,27 @@
+<h1>Listing jargon_files</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Source</th>
+    <th>Jargon score</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @jargon_files.each do |jargon_file| %>
+  <tr>
+    <td><%= jargon_file.name %></td>
+    <td><%= jargon_file.source_id %></td>
+    <td><%= jargon_file.jargon_score %></td>
+    <td><%= link_to 'Show', jargon_file %></td>
+    <td><%= link_to 'Edit', edit_jargon_file_path(jargon_file) %></td>
+    <td><%= link_to 'Destroy', jargon_file, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Jargon file', new_jargon_file_path %>
