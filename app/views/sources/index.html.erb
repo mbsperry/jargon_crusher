@@ -1,9 +1,11 @@
 <script language="javascript" type="text/javascript" src="/assets/jquery.min.   js"></script>
 <script language="javascript" type="text/javascript" src="/assets/jquery.jqplot.min.js"></script>
+<script type="text/javascript" src="/assets/plugins/jqplot.canvasAxisLabelRenderer.min.js"></script>
+<script type="text/javascript" src="/assets/plugins/jqplot.canvasTextRenderer.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/assets/jquery.jqplot.css" />
 
 
-<h1>Listing sources</h1>
+<h1>Jargon Source Repositories</h1>
 
 <table>
   <tr>
@@ -30,12 +32,25 @@
 <% end %>
 
 <p>
-  <b>Jargon scores for all sources</b></br>
-  <div id="chartdiv" style="height:400px;width:300px; "></div>
+  <div id="chartdiv" style="height:400px;width:300px; "> </div>
   <script>
     var j_points = [];
     j_points = <%= @source_data.to_json %>;
-    $.jqplot('chartdiv', j_points);
+    var plot1 = $.jqplot('chartdiv', j_points, {
+      title: 'Jargon Trend: All Sources',
+      axesDefaults: {
+        labelRenderer: $.jqplot.CanvasAxisLabelRenderer
+      },
+      axes: {
+        xaxis: {
+          label: "Jargon Files",
+          pad: 1
+        },
+        yaxis: {
+          label: "Jargon Score"
+        }
+      }
+    });
   </script>
 </p>
 
