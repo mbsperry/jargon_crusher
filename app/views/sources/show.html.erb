@@ -11,7 +11,7 @@
 
 <p>
   <b>Jargon Files:</b>
-  <% @files = JargonFile.all %>
+  <% @files = @source.jargon_files.all %>
   <% points = [] %>
   <table>
     <tr>
@@ -20,12 +20,16 @@
     </tr>
     <% @files.each do |file| %>
       <tr>
-        <td><%= file.name %></td>
+        <td><%= link_to file.name, file %></td>
         <td><%= file.jargon_score %></td>
         <% points.push file.jargon_score %>
       </tr>
     <% end %>
   </table>
+</p>
+
+<p>
+  <%= link_to 'Add Jargon Files',  new_jargon_file_path %>
 </p>
 
 <p>
