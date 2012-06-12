@@ -11,14 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120611042407) do
+ActiveRecord::Schema.define(:version => 20120612221247) do
 
   create_table "jargon_files", :force => true do |t|
     t.string   "name"
     t.integer  "source_id"
     t.float    "jargon_score"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+    t.string   "text_file_file_name"
+    t.string   "text_file_content_type"
+    t.integer  "text_file_file_size"
+    t.datetime "text_file_updated_at"
   end
 
   create_table "sources", :force => true do |t|
