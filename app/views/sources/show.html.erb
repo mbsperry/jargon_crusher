@@ -1,48 +1,62 @@
-<script language="javascript" type="text/javascript" src="/assets/jquery.min.   js"></script>
+<script language="javascript" type="text/javascript" src="/assets/jquery.min.js"></script>
 <script language="javascript" type="text/javascript" src="/assets/jquery.jqplot.min.js"></script>
+<script type="text/javascript" src="/assets/plugins/jqplot.canvasAxisLabelRenderer.min.js"></script>
+<script type="text/javascript" src="/assets/plugins/jqplot.canvasTextRenderer.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/assets/jquery.jqplot.css" />
 
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Source:</b>
-  <%= link_to @source.name,  edit_source_path %>
-  <%= link_to '(delete)', @source, confirm: 'Are you sure?', method: :destroy %>
-</p>
+<% @graph_data = [] %>
+<div class="row-fluid">
+  <div class="span2">
+    <div class="well sidebar-nav">
+      <p>
+        <b>Source:</b>
+        <%= @source.name %>
+        <%= link_to '(edit)', edit_source_path(@source) %>
+      </p>
+      <table>
+        <tr>
+          <th align="left">File Name</th>
+          <th align="left">Jargon Score</th>
+        </tr>
 
-<p>
-  <b>Jargon Files:</b>
-  <% @files = @source.jargon_files.all %>
-  <% points = [] %>
-  <table>
-    <tr>
-      <th>File name</th>
-      <th>Jargon Score</th>
-    </tr>
-    <% @files.each do |file| %>
-      <tr>
-        <td><%= link_to file.name, file %></td>
-        <td><%= file.jargon_score %></td>
-        <% points.push file.jargon_score %>
-      </tr>
-    <% end %>
-  </table>
-</p>
+      <% @source.jargon_files.each do |file| %>
+        <tr>
+          <td><%= link_to file.name, file %></td>
+          <td><%= file.jargon_score %></td>
+          <% @graph_data.push file.jargon_score %>
+        </tr>
+      <% end %>
+      </table>
+      <br />
+      <hr>
 
-<p>
-  <%= link_to 'Add Jargon Files',  new_jargon_file_path %>
-</p>
-
-<p>
-  <b>Score Trend</b>
-  <div id="chartdiv" style="height:400px;width:300px; "></div>
-  <script>
-    var j_points = [];
-    j_points = <%= points.to_json %>;
-    $.jqplot('chartdiv', [j_points]);
-  </script>
-</p>
+      <%= link_to 'New Jargon File', new_jargon_file_path %>
+    </div>
+  </div>
 
 
-<%= link_to 'Edit', edit_source_path(@source) %> |
+<div class="span10" id='chartdiv' ></div>
+<script>
+  var j_points = [];
+  j_points = <%= @graph_data.to_json %>;
+  var plot1 = $.jqplot('chartdiv', [j_points], {
+    title: 'Jargon Trend',
+    axesDefaults: {
+      labelRenderer: $.jqplot.CanvasAxisLabelRenderer
+    },
+    axes: {
+      xaxis: {
+        label: "Jargon Files",
+        pad: 1
+      },
+      yaxis: {
+        label: "Jargon Score"
+      }
+    }
+  });
+</script>
+</div>
+
 <%= link_to 'Back', sources_path %>

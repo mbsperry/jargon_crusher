@@ -1,0 +1,21 @@
+<script>
+  var j_points = [];
+	var j_title = <% @graph_title.to_json %>
+  j_points = <%= @graph_data.to_json %>;
+  var plot1 = $.jqplot('chartdiv', j_points, {
+    title: j_title,
+    axesDefaults: {
+      labelRenderer: $.jqplot.CanvasAxisLabelRenderer
+    },
+    axes: {
+      xaxis: {
+        label: "Jargon Files",
+        pad: 1
+      },
+      yaxis: {
+        label: "Jargon Score"
+      }
+    }
+  });
+</script>
+
