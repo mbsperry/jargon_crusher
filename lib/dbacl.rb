@@ -2,14 +2,15 @@ class Dbacl
   attr_accessor :output
 
 	def parse_dbacl
-    valid_output = @output.encode('UTF-8', 'UTF-8', invalid: :replace)
+    # valid_output = @output.encode('UTF-8', 'UTF-8', invalid: :replace)
+valid_output = @output
     
 		h = Hash.new("NaN")
 		if valid_output[/\/(.+\.txt)/, 1]
 			h[:file_name] = $1
       puts "yes"
 		else
-			return false
+#			return false
 		end
 		h[:jargon_score] = valid_output[/jargon2 +(\d+.\d+)/, 1] if $1
 		h[:switch_score] = valid_output[/switch1 +(\d+.\d+)/, 1] if $1
