@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120612221247) do
+ActiveRecord::Schema.define(:version => 20120613065728) do
 
   create_table "jargon_files", :force => true do |t|
     t.string   "name"
@@ -23,6 +23,11 @@ ActiveRecord::Schema.define(:version => 20120612221247) do
     t.string   "text_file_content_type"
     t.integer  "text_file_file_size"
     t.datetime "text_file_updated_at"
+    t.float    "switch_score"
+    t.float    "slate_score"
+    t.float    "jargonCDC_score"
+    t.float    "letters_score"
+    t.float    "composite_score"
   end
 
   create_table "sources", :force => true do |t|

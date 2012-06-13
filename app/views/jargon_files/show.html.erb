@@ -15,6 +15,18 @@
   <%= @jargon_file.jargon_score %>
 </p>
 <p>
+  <b>Slate score:</b>
+  <%= @jargon_file.slate_score %>
+</p>
+<p>
+  <b>Switch score:</b>
+  <%= @jargon_file.switch_score %>
+</p>
+<p>
+  <b>Composite score:</b>
+  <%= @jargon_file.composite_score %>
+</p>
+<p>
   <pre>
     <% if @jargon_file.text_file.present? %>
       <%= render :file => @jargon_file.text_file.path %>
@@ -23,5 +35,4 @@
 </p>
 
 
-<%= link_to 'Edit', edit_jargon_file_path(@jargon_file) %> |
 <%= link_to 'Back', @jargon_file.source %>

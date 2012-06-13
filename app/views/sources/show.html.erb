@@ -24,8 +24,8 @@
       <% @source.jargon_files.each do |file| %>
         <tr>
           <td><%= link_to file.name, file %></td>
-          <td><%= file.jargon_score %></td>
-          <% @graph_data.push file.jargon_score %>
+          <td><%= number_to_human(file.composite_score, :precision => 5) %></td>
+          <% @graph_data.push file.composite_score %>
           <td><%= link_to '(del)', file, confirm: "Really Delete?", method: :delete %></td>
         </tr>
       <% end %>
