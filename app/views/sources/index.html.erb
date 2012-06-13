@@ -29,7 +29,7 @@
 
 <% @source_data = Array.new %>
 <% @sources.each do |source| %>
-<% @source_data.push source.jargon_files.map { |x| x.jargon_score } %>
+<% @source_data.push source.jargon_files.map { |x| x.composite_score } %>
 <% end %>
 
 
