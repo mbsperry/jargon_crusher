@@ -16,10 +16,12 @@
 </p>
 <p>
   <pre>
-    <%= render :file => @jargon_file.text_file.path %>
+    <% if @jargon_file.text_file.present? %>
+      <%= render :file => @jargon_file.text_file.path %>
+    <% end %>
   </pre>
 </p>
 
 
 <%= link_to 'Edit', edit_jargon_file_path(@jargon_file) %> |
-<%= link_to 'Back', jargon_files_path %>
+<%= link_to 'Back', @jargon_file.source %>

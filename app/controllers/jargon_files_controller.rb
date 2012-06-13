@@ -26,6 +26,8 @@ class JargonFilesController < ApplicationController
   # GET /jargon_files/new.json
   def new
     @jargon_file = JargonFile.new
+    @source = Source.find(params[:source])
+    @jargon_file.source_id = @source.id
 
     respond_to do |format|
       format.html # new.html.erb
@@ -74,10 +76,11 @@ class JargonFilesController < ApplicationController
   # DELETE /jargon_files/1.json
   def destroy
     @jargon_file = JargonFile.find(params[:id])
+    @source = @jargon_file.source
     @jargon_file.destroy
 
     respond_to do |format|
-      format.html { redirect_to jargon_files_url }
+      format.html { redirect_to @source }
       format.json { head :no_content }
     end
   end

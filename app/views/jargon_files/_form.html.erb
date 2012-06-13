@@ -11,18 +11,8 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :source_id %><br />
-    <%= f.number_field :source_id %>
-  </div>
-  <div class="field">
-    <%= f.label :jargon_score %><br />
-    <%= f.text_field :jargon_score %>
-  </div>
+  <p><b>Add File to:  </b><%= @jargon_file.source.name %></p>
+    <%= f.hidden_field :source_id %>
   <p>
     <%= f.file_field :text_file %>
   </p>

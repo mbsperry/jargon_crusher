@@ -8,7 +8,7 @@
 
 <% @graph_data = [] %>
 <div class="row-fluid">
-  <div class="span2">
+  <div class="span3">
     <div class="well sidebar-nav">
       <p>
         <b>Source:</b>
@@ -26,18 +26,19 @@
           <td><%= link_to file.name, file %></td>
           <td><%= file.jargon_score %></td>
           <% @graph_data.push file.jargon_score %>
+          <td><%= link_to '(del)', file, confirm: "Really Delete?", method: :delete %></td>
         </tr>
       <% end %>
       </table>
       <br />
       <hr>
 
-      <%= link_to 'New Jargon File', new_jargon_file_path %>
+      <%= link_to 'New Jargon File', new_jargon_file_path(:source => @source.id) %>
     </div>
   </div>
 
 
-<div class="span10" id='chartdiv' ></div>
+<div class="span9" id='chartdiv' ></div>
 <script>
   var j_points = [];
   j_points = <%= @graph_data.to_json %>;
